@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shobhana | Data Analyst</title>
+<meta name="description" content="Data Analyst portfolio — SQL, Python, and business analytics projects.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%232F5D8A%22/><text x=%2250%22 y=%2266%22 font-size=%2258%22 font-family=%22sans-serif%22 font-weight=%22800%22 fill=%22white%22 text-anchor=%22middle%22>S</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  /* ============ TOKENS ============ */
+  :root{
+    --bg:        #FAFBFC;
+    --surface:   #FFFFFF;
+    --surface-2: #F1F4F7;
+    --border:    #E2E7EC;
+    --text:      #1A2433;
+    --text-muted:#5B6472;
+    --text-dim:  #8992A0;
+    --accent:    #2F5D8A;
+    --accent-2:  #1E8A72;
+    --font-head: 'Libre Franklin', sans-serif;
+    --font-body: 'Inter', sans-serif;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--font-body);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{ color:inherit; text-decoration:none; }
+  ::selection{ background:var(--accent); color:#fff; }
+  :focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
+
+  .wrap{ max-width:880px; margin:0 auto; padding:0 24px; }
+
+  /* ============ NAV ============ */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(250,251,252,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--border);
+  }
+  nav .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 24px;
+  }
+  .logo{ font-family:var(--font-head); font-weight:700; font-size:16px; letter-spacing:-0.01em; }
+  .nav-links{ display:none; gap:32px; font-size:14px; color:var(--text-muted); font-weight:500; }
+  .nav-links a:hover{ color:var(--accent); }
+  @media(min-width:640px){ .nav-links{ display:flex; } }
+  .nav-cta{
+    font-size:13px; font-weight:600;
+    padding:9px 16px; border-radius:6px;
+    background:var(--accent); color:#fff;
+  }
+  .nav-cta:hover{ opacity:0.9; }
+
+  /* ============ HERO ============ */
+  header.hero{ padding:80px 0 64px; }
+  .hero-inner{
+    display:flex; flex-direction:column-reverse; gap:36px; align-items:flex-start;
+  }
+  @media(min-width:720px){
+    .hero-inner{ flex-direction:row; align-items:center; justify-content:space-between; }
+  }
+
+  .hero-text{ max-width:520px; }
+  .eyebrow{
+    display:inline-block;
+    font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--accent-2);
+    background:rgba(30,138,114,0.08);
+    padding:5px 12px; border-radius:20px;
+    margin-bottom:18px;
+  }
+  h1.name{
+    font-family:var(--font-head);
+    font-weight:800;
+    font-size:clamp(30px,5vw,44px);
+    letter-spacing:-0.02em;
+    line-height:1.1;
+  }
+  .role{
+    margin-top:10px;
+    font-size:18px; font-weight:600; color:var(--accent);
+  }
+  .tagline{
+    margin-top:14px;
+    color:var(--text-muted);
+    font-size:15.5px;
+  }
+  .hero-cta{ margin-top:26px; display:flex; gap:12px; flex-wrap:wrap; }
+  .btn{
+    font-size:14px; font-weight:600;
+    padding:11px 20px; border-radius:7px;
+    border:1px solid var(--border);
+    background:var(--surface);
+    transition:border-color .15s, transform .15s, box-shadow .15s;
+  }
+  .btn:hover{ border-color:var(--accent); transform:translateY(-1px); box-shadow:0 6px 14px -8px rgba(47,93,138,0.3); }
+  .btn.primary{ background:var(--accent); color:#fff; border-color:var(--accent); }
+  .btn.primary:hover{ opacity:0.92; }
+  .btn.ghost{ background:transparent; }
+  .btn svg{ width:14px; height:14px; vertical-align:-2px; margin-right:5px; }
+
+  /* ---- Photo ---- */
+  .photo-wrap{ flex-shrink:0; }
+  .photo{
+    width:150px; height:150px; border-radius:50%;
+    object-fit:cover;
+    border:4px solid var(--surface);
+    box-shadow:0 12px 28px -10px rgba(26,36,51,0.22);
+  }
+  .photo-fallback{
+    width:150px; height:150px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    color:#fff; font-family:var(--font-head); font-weight:700; font-size:44px;
+    border:4px solid var(--surface);
+    box-shadow:0 12px 28px -10px rgba(26,36,51,0.22);
+  }
+
+  /* ============ SECTIONS ============ */
+  section{ padding:56px 0; border-top:1px solid var(--border); }
+  .section-head{ display:flex; align-items:baseline; gap:10px; margin-bottom:28px; }
+  .section-num{ font-family:var(--font-head); font-weight:700; color:var(--accent); font-size:14px; }
+  h2.section-title{ font-family:var(--font-head); font-size:22px; font-weight:700; }
+
+  /* ============ ABOUT ============ */
+  .about-text{ color:var(--text-muted); max-width:640px; font-size:15.5px; }
+  .about-text strong{ color:var(--text); font-weight:600; }
+
+  /* ============ SKILLS ============ */
+  .skills-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+    gap:12px;
+  }
+  .skill-card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:18px;
+  }
+  .skill-name{ font-weight:600; font-size:15px; }
+  .skill-desc{ margin-top:4px; font-size:13px; color:var(--text-muted); }
+  .skill-bar{
+    margin-top:12px; height:4px; border-radius:2px;
+    background:var(--surface-2); overflow:hidden;
+  }
+  .skill-bar-fill{ height:100%; background:var(--accent); border-radius:2px; }
+
+  /* ============ PROJECTS ============ */
+  .project-card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:12px;
+    margin-bottom:18px;
+    padding:26px;
+    transition:box-shadow .2s, transform .2s;
+  }
+  .project-card:hover{ box-shadow:0 16px 32px -18px rgba(26,36,51,0.18); transform:translateY(-2px); }
+  .project-head{
+    display:flex; justify-content:space-between; align-items:flex-start;
+    gap:16px; flex-wrap:wrap;
+  }
+  .project-name{ font-family:var(--font-head); font-size:18px; font-weight:700; }
+  .project-link{
+    font-size:13px; font-weight:600; color:var(--accent);
+    display:inline-flex; align-items:center; gap:4px;
+  }
+  .project-link:hover{ text-decoration:underline; }
+  .project-desc{ margin-top:10px; color:var(--text-muted); font-size:14.5px; max-width:600px; }
+  .project-meta{ display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
+  .tag{
+    font-size:11.5px; font-weight:600; color:var(--accent);
+    background:rgba(47,93,138,0.08);
+    padding:5px 11px; border-radius:14px;
+  }
+  .project-stats{
+    display:flex; gap:28px; flex-wrap:wrap;
+    margin-top:18px; padding-top:16px;
+    border-top:1px solid var(--border);
+  }
+  .stat-num{ font-family:var(--font-head); font-size:19px; font-weight:800; color:var(--accent-2); }
+  .stat-label{ font-size:11px; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.05em; }
+
+  .project-chart{
+    margin-top:18px; padding-top:18px;
+    border-top:1px solid var(--border);
+  }
+  .project-chart img{
+    width:100%; border-radius:8px; border:1px solid var(--border); display:block;
+  }
+  .chart-caption{
+    margin-top:10px; font-size:12.5px; color:var(--text-muted);
+  }
+  .chart-caption a{ color:var(--accent); font-weight:600; }
+  .chart-caption a:hover{ text-decoration:underline; }
+
+  /* ============ CONTACT ============ */
+  .contact-links{ display:flex; gap:12px; flex-wrap:wrap; margin-top:18px; }
+
+  footer{
+    padding:36px 0 56px;
+    border-top:1px solid var(--border);
+    font-size:13px; color:var(--text-dim); text-align:center;
+  }
+
+  .reveal{ opacity:0; transform:translateY(12px); transition:opacity .5s ease, transform .5s ease; }
+  .reveal.in{ opacity:1; transform:none; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">Shobhana</div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+    </div>
+    <a class="nav-cta" href="#contact">Contact</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-inner">
+    <div class="hero-text">
+      <span class="eyebrow">Open to work</span>
+      <h1 class="name">Shobhana</h1>
+      <div class="role">Data Analyst</div>
+      <p class="tagline">I turn raw transactional data into decisions — SQL for the questions, Python for the story, and clear reporting for the people who have to act on it.</p>
+      <div class="hero-cta">
+        <a class="btn primary" href="#projects">View my work</a>
+        <a class="btn" href="mailto:shobhana8210@gmail.com">Get in touch</a>
+        <a class="btn ghost" href="resume.pdf" download>↓ Resume</a>
+      </div>
+    </div>
+
+    <div class="photo-wrap">
+      <!-- Replace 'photo.jpg' below with your actual photo filename, placed in the same folder as this HTML file -->
+      <img class="photo" src="C:\Users\hp\Desktop\projects\port_folio\images\1786554954561.jpg.jpeg" alt="Shobhana" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'photo-fallback',textContent:'S'}))">
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head"><span class="section-num">01</span><h2 class="section-title">About</h2></div>
+    <p class="about-text">
+      I got into data because I like the moment a messy spreadsheet turns into one clear number someone can actually act on. I'm a <strong>fresher Data Analyst</strong> with a background in Computer Science Engineering, comfortable with SQL and Python, and I learn a domain fast by asking "so what should we do differently because of this?" — not just "what does the chart show." Currently looking for my first full-time Data Analyst role.
+    </p>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head"><span class="section-num">02</span><h2 class="section-title">Skills</h2></div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-name">SQL</div>
+        <div class="skill-desc">Joins, CTEs, window functions</div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width:85%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-name">Python</div>
+        <div class="skill-desc">pandas, numpy, matplotlib, seaborn</div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width:80%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-name">Excel</div>
+        <div class="skill-desc">Pivot tables, formulas, dashboards</div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width:75%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-name">Power BI </div>
+        <div class="skill-desc">Interactive dashboards</div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width:65%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-name">Databases</div>
+        <div class="skill-desc">SQLite, PostgreSQL, MySQL</div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width:70%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-name">Git & GitHub</div>
+        <div class="skill-desc">Version control, documentation</div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width:70%"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head"><span class="section-num">03</span><h2 class="section-title">Projects</h2></div>
+
+    <div class="project-card">
+      <div class="project-head">
+        <div class="project-name">Retail Sales Analytics</div>
+        <a class="project-link" href="https://github.com/shobhana82/retail-sales-analytics" target="_blank" rel="noopener">View on GitHub →</a>
+      </div>
+      <p class="project-desc">
+        End-to-end analysis of 2 years of retail transactions — SQL business queries, Python EDA, and data-driven recommendations on discounting strategy, regional performance, and customer value.
+      </p>
+      <div class="project-meta">
+        <span class="tag">SQL</span>
+        <span class="tag">Python</span>
+        <span class="tag">pandas</span>
+        <span class="tag">seaborn</span>
+        <span class="tag">SQLite</span>
+      </div>
+      <div class="project-stats">
+        <div><div class="stat-num">$12.99M</div><div class="stat-label">Revenue Analyzed</div></div>
+        <div><div class="stat-num">33.7%</div><div class="stat-label">Profit Margin</div></div>
+        <div><div class="stat-num">12</div><div class="stat-label">SQL Queries</div></div>
+      </div>
+      <div class="project-chart">
+        <img src="C:\Users\hp\Desktop\projects\port_folio\images\01_monthly_revenue_trend.png" alt="Monthly revenue trend chart showing seasonal spikes in Nov-Dec">
+        <div class="chart-caption">Monthly revenue trend — flagged Nov/Dec seasonality for inventory planning. <a href="https://github.com/shobhana82/retail-sales-analytics" target="_blank" rel="noopener">See full analysis on GitHub →</a></div>
+      </div>
+    </div>
+
+
+    <div class="project-card">
+      <div class="project-head">
+        <div class="project-name">Customer Behavior Analysis</div>
+        <a class="project-link" href="https://github.com/shobhana82/customer-behavior-analysis-python-sql-powerbi" target="_blank" rel="noopener">View on GitHub →</a>
+      </div>
+      <p class="project-desc">
+        End-to-end analysis of customer shopping behavior — data cleaning and EDA in Python, SQL queries for customer segmentation and purchase patterns, and an interactive Power BI dashboard for stakeholder reporting.
+      </p>
+      <div class="project-meta">
+        <span class="tag">Python</span>
+        <span class="tag">pandas</span>
+        <span class="tag">SQL</span>
+        <span class="tag">Power BI</span>
+      </div>
+      <div class="project-chart">
+        <img src="C:\Users\hp\Desktop\projects\port_folio\images\Screenshot 2026-07-21 202329.png" alt="Power BI dashboard showing customer segmentation and purchase pattern KPIs">
+        <img src="C:\Users\hp\Desktop\projects\port_folio\images\Screenshot 2026-07-21 202342.png" alt="Power BI dashboard showing customer segmentation and purchase pattern KPIs">
+        <div class="chart-caption">Interactive Power BI dashboard — customer segments, purchase patterns, and KPI tracking. <a href="https://github.com/shobhana82/customer-behavior-analysis-python-sql-powerbi" target="_blank" rel="noopener">See full analysis on GitHub →</a></div>
+      </div>
+    </div>
+
+    <!-- Duplicate this block to add another project -->
+    
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="section-head"><span class="section-num">04</span><h2 class="section-title">Contact</h2></div>
+    <p class="about-text">Open to Data Analyst roles — I'd love to hear from you.</p>
+    <div class="contact-links">
+      <a class="btn primary" href="mailto:shobhana8210@gmail.com">shobhana8210@gmail.com</a>
+      <a class="btn" href="https://www.linkedin.com/in/shobhana82" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" href="https://github.com/shobhana82" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © Shobhana · built and deployed on GitHub Pages
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('section');
+  revealEls.forEach(el => el.classList.add('reveal'));
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
